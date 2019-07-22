@@ -32,6 +32,7 @@ import numpy as np
 valnew=TasmanianSG.TasmanianSparseGrid()
 if (numstart==0):
     valnew=interpol.sparse_grid_adapt(n_agents, iDepth)
+    print("Checkpoint 2")
     valnew.write("valnew_1." + str(numstart) + ".txt") #write file to disk for restart
 
 
