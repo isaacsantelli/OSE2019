@@ -36,7 +36,6 @@ def utility(cons=[], lab=[]):
 
 def output_f(z, kap=[], lab=[]):
     shocks = [.90, .95, 1.0, 1.05, 1.10]
-    print(z)
     fun_val = shocks[z] * big_A*(kap**psi)*(lab**(1.0 - psi))
     return fun_val
 
