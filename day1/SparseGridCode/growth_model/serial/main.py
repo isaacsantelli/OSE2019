@@ -34,11 +34,12 @@ if (numstart==0):
     valnew=interpol.sparse_grid_adapt(n_agents, iDepth)
     valnew.write("valnew_1." + str(numstart) + ".txt") #write file to disk for restart
 
-print("we made it this far")
 
 # value function during iteration
 else:
     valnew.read("valnew_1." + str(numstart) + ".txt")  #write file to disk for restart
+
+print("we made it this far")
 
 valold=TasmanianSG.TasmanianSparseGrid()
 valold=valnew
