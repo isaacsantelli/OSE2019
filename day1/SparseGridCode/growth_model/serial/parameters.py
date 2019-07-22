@@ -18,12 +18,12 @@ iDepth=1
 iOut=1         # how many outputs
 which_basis = 1 #linear basis function (2: quadratic local basis)
 fTol = 1.E-5
-refinement_level = 5
+refinement_level = 3
 zlist = [0, 1, 2, 3, 4]
 
 # control of iterations
 numstart = 0   # which is iteration to start (numstart = 0: start from scratch, number=/0: restart)
-numits = 10    # which is the iteration to end
+numits = 2    # which is the iteration to end
 
 # How many random points for computing the errors
 No_samples = 1000

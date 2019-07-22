@@ -25,6 +25,11 @@ import TasmanianSG                            #sparse grid library
 import numpy as np
 import copy
 
+import matplotlib.pyplot as plt
+import numpy as np
+from random import uniform
+from mpl_toolkits.mplot3d import Axes3D
+
 #======================================================================
 # Start with Value Function Iteration
 
@@ -35,16 +40,11 @@ valnew2=TasmanianSG.TasmanianSparseGrid()
 valnew3=TasmanianSG.TasmanianSparseGrid()
 valnew4=TasmanianSG.TasmanianSparseGrid()
 valnew = [valnew0, valnew1, valnew2, valnew3, valnew4]
-if (numstart==0):
-	for z in zlist:
-    		print("Currently at State", z)
-    		valnew[z] = interpol.sparse_grid_adapt(n_agents, iDepth, z)
-    		valnew[z].write("valnew_1." + str(numstart) + ".txt") #write file to disk for restart
+for z in zlist:
+	print("Currently at State", z)
+	valnew[z] = interpol.sparse_grid_adapt(n_agents, iDepth, z)
 
 # value function during iteration
-else:
-	for z in zlist:
-        	valnew[z].read("valnew_1." + str(numstart) + ".txt")  #write file to disk for restart
 
 print("we made it this far")
 valold = [0,0,0,0,0]
@@ -64,7 +64,22 @@ for i in range(numstart, numits):
 	print("Valold length:", len(valold))
 	for z in zlist:
         	valold[z] = valnew[z]
-		valnew[z].write("valnew_1." + str(i+1) + ".txt")
+
+aPnts = np.empty([10000, 2])
+for iI in range(aPnts.shape[0]):
+    for iJ in range(2):
+        aPnts[iI][iJ] = uniform(0.2, 3)
+
+aRes = np.empty([aPnts.shape[0],5])
+for i in range(5):
+    for j in range(aPnts.shape[0]):
+        kj = np.array([aPnts[j]])
+        aRes[j,i] = valnew[i].evaluateBatch(kj) # Evaluate the interpolant at the cartesian grid
+
+np.savetxt("FinalValues.txt", aRes)
+np.savetxr("EvalPoints", aPnts)
+	
+
 
 #======================================================================
 print( "===============================================================")
@@ -76,6 +91,7 @@ print( "===============================================================")
 
 # compute errors
 avg_err=post.ls_error(n_agents, numstart, numits, No_samples)
+
 
 #======================================================================
 print( "===============================================================")
