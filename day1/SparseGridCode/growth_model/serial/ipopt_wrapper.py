@@ -30,7 +30,7 @@ def EV_F(X, k_init, n_agents, z):
 # V infinity
 def V_INFINITY(k=[]):
     e=np.ones(len(k))
-    c=output_f(k, e, z)
+    c=output_f(z, k, e)
     v_infinity=utility(c,e)/(1-beta)
     return v_infinity
 
@@ -137,7 +137,7 @@ def EV_G(X, k_init, n_agents, z):
         G[i+2*n_agents]=inv[i]
 
 
-    f_prod=output_f(k_init, lab, z)
+    f_prod=output_f(z, k_init, lab)
     Gamma_adjust=0.5*zeta*k_init*((inv/k_init - delta)**2.0)
     sectors_sum=cons + inv - delta*k_init - (f_prod - Gamma_adjust)
     G[3*n_agents]=np.sum(sectors_sum)
@@ -165,7 +165,7 @@ def EV_G_ITER(X, k_init, n_agents, z):
         G[i+2*n_agents]=inv[i]
 
 
-    f_prod=output_f(k_init, lab, z)
+    f_prod=output_f(z, k_init, lab)
     Gamma_adjust=0.5*zeta*k_init*((inv/k_init - delta)**2.0)
     sectors_sum=cons + inv - delta*k_init - (f_prod - Gamma_adjust)
     G[3*n_agents]=np.sum(sectors_sum)
