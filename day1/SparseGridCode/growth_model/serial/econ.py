@@ -34,9 +34,9 @@ def utility(cons=[], lab=[]):
 #======================================================================
 # output_f
 
-def output_f(kap=[], lab=[], shock):
+def output_f(kap=[], lab=[]):
     shocks = [.90, .95, 1.0, 1.05, 1.10]
-    fun_val = shocks[shock] * big_A*(kap**psi)*(lab**(1.0 - psi))
+    fun_val = big_A*(kap**psi)*(lab**(1.0 - psi))
     return fun_val
 
 #======================================================================
