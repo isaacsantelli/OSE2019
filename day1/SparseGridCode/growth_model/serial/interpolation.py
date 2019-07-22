@@ -83,7 +83,7 @@ def sparse_grid_adapt(n_agents, iDepth):
         np.savetxt(file, to_print, fmt='%2.16f')
 
     for iK in range(refinement_level):
-        grid1.setSurplusRefinement(fTol, 1, "fds")   #also use fds, or other rules
+        grid.setSurplusRefinement(fTol, 1, "fds")   #also use fds, or other rules
         aPoints = grid.getNeededPoints()
         aVals = np.empty([aPoints.shape[0], 1])
         for iI in range(aPoints.shape[0]):
