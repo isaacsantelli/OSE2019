@@ -78,6 +78,7 @@ def sparse_grid_iter_adapt(n_agents, iDepth, valold):
     aPoints=grid.getPoints()
     iNumP1=aPoints.shape[0]
     aVals=np.empty([iNumP1, 1])
+    grid.loadNeededPoints(aVals)
 
     file=open("comparison1.txt", 'w')
     for iI in range(iNumP1):
@@ -85,6 +86,15 @@ def sparse_grid_iter_adapt(n_agents, iDepth, valold):
         v=aVals[iI]*np.ones((1,1))
         to_print=np.hstack((aPoints[iI].reshape(1,n_agents), v))
         np.savetxt(file, to_print, fmt='%2.16f')
+
+    for iK in range(refinement_level):
+        grid.setSurplusRefinement(fTol, 1, "fds")   #also use fds, or other rules
+	    aPoints = grid.getNeededPoints()
+        aVals = np.empty([aPoints.shape[0], 1])
+        for iI in range(aPoints.shape[0]):
+            aVals[iI] = solver.initial(aPoints[iI], n_agents)[0]
+
+        grid.loadNeededPoints(aVals)
 
     file.close()
     grid.loadNeededPoints(aVals)
