@@ -85,7 +85,7 @@ def sparse_grid_adapt(n_agents, iDepth):
 
     for iK in range(refinement_level):
         grid.setSurplusRefinement(fTol, 1, "fds")   #also use fds, or other rules
-	    aPoints = grid.getNeededPoints()
+	aPoints = grid.getNeededPoints()
         aVals = np.empty([aPoints.shape[0], 1])
         for iI in range(aPoints.shape[0]):
             aVals[iI] = solver.initial(aPoints[iI], n_agents)[0]
