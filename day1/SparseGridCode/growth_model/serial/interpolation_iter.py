@@ -97,7 +97,6 @@ def sparse_grid_iter_adapt(n_agents, iDepth, valold):
         grid.loadNeededPoints(aVals)
 
     file.close()
-    grid.loadNeededPoints(aVals)
 
     f=open("grid_iter.txt", 'w')
     np.savetxt(f, aPoints, fmt='% 2.16f')
