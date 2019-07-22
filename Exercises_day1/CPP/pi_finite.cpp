@@ -4,8 +4,8 @@
 #include <math.h>
 #include <string>
 #include <sstream>
-#include <chrono>
-using namespace std::chrono;
+// #include <chrono>
+// using namespace std::chrono;
 
 
 using namespace std;
@@ -18,7 +18,7 @@ int main()
     cin >> steps;
     double width = 1.0 / (double) steps;
     int i;
-    auto start = high_resolution_clock::now();
+    // auto start = high_resolution_clock::now();
     double rv = 0.0;
     float x, y;
     for (i = 0; i < steps; i++)
@@ -28,9 +28,8 @@ int main()
         rv += y * width;
     }
     cout << rv << "\n";
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<seconds>(stop - start);
-
-    cout << "With " << steps << " iterations the function took " << duration.count() << " seconds \n";
+    // auto stop = high_resolution_clock::now();
+    // auto duration = duration_cast<seconds>(stop - start);
+    // cout << "With " << steps << " iterations the function took " << duration.count() << " seconds \n";
     return rv;
 }
