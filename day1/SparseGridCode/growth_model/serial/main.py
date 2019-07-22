@@ -48,7 +48,8 @@ else:
 
 print("we made it this far")
 valold = []
-valold = list(copy.deepcopy(valnew))
+for z in zlist:
+    valold[z] = valnew[z]
 
 for i in range(numstart, numits):
 	valnew0=TasmanianSG.TasmanianSparseGrid()
@@ -59,9 +60,10 @@ for i in range(numstart, numits):
 	valnew = [valnew0, valnew1, valnew2, valnew3, valnew4]
 	for z in zlist:
     		valnew[z] = (interpol_iter.sparse_grid_iter_adapt(n_agents, iDepth, valold, z))
-    	valold = []
-    	valold = list(copy.deepcopy(valnew))
-    	valnew.write("valnew_1." + str(i+1) + ".txt")
+
+	for z in zlist:
+        valold[z] = valnew[z]
+	valnew.write("valnew_1." + str(i+1) + ".txt")
 
 #======================================================================
 print( "===============================================================")
