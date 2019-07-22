@@ -55,7 +55,7 @@ def EV_F_ITER(X, k_init, n_agents, grid):
 #=======================================================================
 #   Computation of gradient (first order finite difference) of initial objective function
 
-def EV_GRAD_F(X, k_init, n_agents):
+def EV_GRAD_F(X, k_init, n_agents, z):
 
     N=len(X)
     GRAD=np.zeros(N, float) # Initial Gradient of Objective Function
@@ -67,19 +67,19 @@ def EV_GRAD_F(X, k_init, n_agents):
 
         if (xAdj[ixN] - h >= 0):
             xAdj[ixN]=X[ixN] + h
-            fx2=EV_F(xAdj, k_init, n_agents)
+            fx2=EV_F(xAdj, k_init, n_agents,z)
 
             xAdj[ixN]=X[ixN] - h
-            fx1=EV_F(xAdj, k_init, n_agents)
+            fx1=EV_F(xAdj, k_init, n_agents, z)
 
             GRAD[ixN]=(fx2-fx1)/(2.0*h)
 
         else:
             xAdj[ixN]=X[ixN] + h
-            fx2=EV_F(xAdj, k_init, n_agents)
+            fx2=EV_F(xAdj, k_init, n_agents, z)
 
             xAdj[ixN]=X[ixN]
-            fx1=EV_F(xAdj, k_init, n_agents)
+            fx1=EV_F(xAdj, k_init, n_agents, z)
             GRAD[ixN]=(fx2-fx1)/h
 
     return GRAD
@@ -176,7 +176,7 @@ def EV_G_ITER(X, k_init, n_agents, z):
 #   Computation (finite difference) of Jacobian of equality constraints
 #   for first time step
 
-def EV_JAC_G(X, flag, k_init, n_agents):
+def EV_JAC_G(X, flag, k_init, n_agents, z):
     N=len(X)
     M=3*n_agents+1
     NZ=M*N
@@ -197,13 +197,13 @@ def EV_JAC_G(X, flag, k_init, n_agents):
     else:
         # Finite Differences
         h=1e-4
-        gx1=EV_G(X, k_init, n_agents)
+        gx1=EV_G(X, k_init, n_agents, z)
 
         for ixM in range(M):
             for ixN in range(N):
                 xAdj=np.copy(X)
                 xAdj[ixN]=xAdj[ixN]+h
-                gx2=EV_G(xAdj, k_init, n_agents)
+                gx2=EV_G(xAdj, k_init, n_agents, z)
                 A[ixN + ixM*N]=(gx2[ixM] - gx1[ixM])/h
         return A
 
@@ -211,7 +211,7 @@ def EV_JAC_G(X, flag, k_init, n_agents):
 #   Computation (finite difference) of Jacobian of equality constraints
 #   during iteration
 
-def EV_JAC_G_ITER(X, flag, k_init, n_agents):
+def EV_JAC_G_ITER(X, flag, k_init, n_agents, z):
     N=len(X)
     M=3*n_agents+1
     NZ=M*N
@@ -232,13 +232,13 @@ def EV_JAC_G_ITER(X, flag, k_init, n_agents):
     else:
         # Finite Differences
         h=1e-4
-        gx1=EV_G_ITER(X, k_init, n_agents)
+        gx1=EV_G_ITER(X, k_init, n_agents, z)
 
         for ixM in range(M):
             for ixN in range(N):
                 xAdj=np.copy(X)
                 xAdj[ixN]=xAdj[ixN]+h
-                gx2=EV_G_ITER(xAdj, k_init, n_agents)
+                gx2=EV_G_ITER(xAdj, k_init, n_agents, z)
                 A[ixN + ixM*N]=(gx2[ixM] - gx1[ixM])/h
         return A
 

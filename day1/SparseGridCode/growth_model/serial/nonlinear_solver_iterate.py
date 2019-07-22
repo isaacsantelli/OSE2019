@@ -82,7 +82,7 @@ def iterate(k_init, n_agents, grid, z):
         return EV_G_ITER(X, k_init, n_agents, z)
 
     def eval_jac_g(x, flag):
-        return EV_JAC_G_ITER(X, flag, k_init, n_agents)
+        return EV_JAC_G_ITER(X, flag, k_init, n_agents, z)
 
     # First create a handle for the Ipopt problem
     nlp=pyipopt.create(N, X_L, X_U, M, G_L, G_U, NELE_JAC, NELE_HESS, eval_f, eval_grad_f, eval_g, eval_jac_g)
