@@ -23,39 +23,44 @@ import postprocessing as post                 #computes the L2 and Linfinity err
 
 import TasmanianSG                            #sparse grid library
 import numpy as np
-
+import copy 
 
 #======================================================================
 # Start with Value Function Iteration
 
 # terminal value function
-valnew=TasmanianSG.TasmanianSparseGrid()
+valnew0=TasmanianSG.TasmanianSparseGrid()
+valnew1=TasmanianSG.TasmanianSparseGrid()
+valnew2=TasmanianSG.TasmanianSparseGrid()
+valnew3=TasmanianSG.TasmanianSparseGrid()
+valnew4=TasmanianSG.TasmanianSparseGrid()
+valnew = [valnew0, valnew1, valnew2, valnew3, valnew4] 
 if (numstart==0):
     for z in zlist:
-        if (z == 0): 
-		valnew = .2*interpol.sparse_grid_adapt(n_agents, iDepth, z)
-        else:
-		valnew += .2*(interpol.sparse_grid_adapt(n_agents, iDepth, z))
-    valnew.write("valnew_1." + str(numstart) + ".txt") #write file to disk for restart
+	print("Currently at State", z)
+	valnew[z] = interpol.sparse_grid_adapt(n_agents, iDepth, z)
+	valnew.write("valnew_1." + str(numstart) + ".txt") #write file to disk for restart
 
 # value function during iteration
 else:
     valnew.read("valnew_1." + str(numstart) + ".txt")  #write file to disk for restart
 
 print("we made it this far")
-valold=TasmanianSG.TasmanianSparseGrid()
-valold=valnew
+valold = []
+valold = list(copy.deepcopy(valnew))
 
 for i in range(numstart, numits):
-    valnew=TasmanianSG.TasmanianSparseGrid()
-    for z in zlist:
-        if (z == 0):
-            valnew = .2 * (interpol_iter.sparse_grid_iter_adapt(n_agents, iDepth, valold, z))
-        else:
-            valnew += .2 * (interpol_iter.sparse_grid_iter_adapt(n_agents, iDepth, valold, z))
-    valold=TasmanianSG.TasmanianSparseGrid()
-    valold=valnew
-    valnew.write("valnew_1." + str(i+1) + ".txt")
+	valnew0=TasmanianSG.TasmanianSparseGrid()
+	valnew1=TasmanianSG.TasmanianSparseGrid()
+	valnew2=TasmanianSG.TasmanianSparseGrid()
+	valnew3=TasmanianSG.TasmanianSparseGrid()
+	valnew4=TasmanianSG.TasmanianSparseGrid()
+	valnew = [valnew0, valnew1, valnew2, valnew3, valnew4] 
+	for z in zlist:
+    		valnew[z] = (interpol_iter.sparse_grid_iter_adapt(n_agents, iDepth, valold, z))
+    	valold = []
+    	valold = list(copy.deepcopy(valnew))
+    	valnew.write("valnew_1." + str(i+1) + ".txt")
 
 #======================================================================
 print( "===============================================================")
