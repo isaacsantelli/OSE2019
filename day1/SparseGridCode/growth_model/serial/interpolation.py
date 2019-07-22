@@ -95,7 +95,6 @@ def sparse_grid_adapt(n_agents, iDepth):
 
 
     file.close()
-    grid.loadNeededPoints(aVals)
 
     f=open("grid.txt", 'w')
     np.savetxt(f, aPoints, fmt='% 2.16f')
