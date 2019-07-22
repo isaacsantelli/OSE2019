@@ -39,11 +39,11 @@ if (numstart==0):
     for z in zlist:
 	print("Currently at State", z)
 	valnew[z] = interpol.sparse_grid_adapt(n_agents, iDepth, z)
-	valnew.write("valnew_1." + str(numstart) + ".txt") #write file to disk for restart
+	valnew[z].write("valnew_1." + str(numstart) + ".txt") #write file to disk for restart
 
 # value function during iteration
 else:
-    valnew.read("valnew_1." + str(numstart) + ".txt")  #write file to disk for restart
+    valnew[z].read("valnew_1." + str(numstart) + ".txt")  #write file to disk for restart
 
 print("we made it this far")
 valold = []
