@@ -23,7 +23,7 @@ import postprocessing as post                 #computes the L2 and Linfinity err
 
 import TasmanianSG                            #sparse grid library
 import numpy as np
-import copy 
+import copy
 
 #======================================================================
 # Start with Value Function Iteration
@@ -34,16 +34,17 @@ valnew1=TasmanianSG.TasmanianSparseGrid()
 valnew2=TasmanianSG.TasmanianSparseGrid()
 valnew3=TasmanianSG.TasmanianSparseGrid()
 valnew4=TasmanianSG.TasmanianSparseGrid()
-valnew = [valnew0, valnew1, valnew2, valnew3, valnew4] 
+valnew = [valnew0, valnew1, valnew2, valnew3, valnew4]
 if (numstart==0):
     for z in zlist:
-	print("Currently at State", z)
-	valnew[z] = interpol.sparse_grid_adapt(n_agents, iDepth, z)
-	valnew[z].write("valnew_1." + str(numstart) + ".txt") #write file to disk for restart
+    	print("Currently at State", z)
+    	valnew[z] = interpol.sparse_grid_adapt(n_agents, iDepth, z)
+    	valnew[z].write("valnew_1." + str(numstart) + ".txt") #write file to disk for restart
 
 # value function during iteration
 else:
-    valnew[z].read("valnew_1." + str(numstart) + ".txt")  #write file to disk for restart
+    for (z in zlist):
+        valnew[z].read("valnew_1." + str(numstart) + ".txt")  #write file to disk for restart
 
 print("we made it this far")
 valold = []
@@ -55,7 +56,7 @@ for i in range(numstart, numits):
 	valnew2=TasmanianSG.TasmanianSparseGrid()
 	valnew3=TasmanianSG.TasmanianSparseGrid()
 	valnew4=TasmanianSG.TasmanianSparseGrid()
-	valnew = [valnew0, valnew1, valnew2, valnew3, valnew4] 
+	valnew = [valnew0, valnew1, valnew2, valnew3, valnew4]
 	for z in zlist:
     		valnew[z] = (interpol_iter.sparse_grid_iter_adapt(n_agents, iDepth, valold, z))
     	valold = []
