@@ -59,8 +59,8 @@ grid2 = TasmanianSG.TasmanianSparseGrid()
 # interpolate: f(x,y) = cos(0.5 * pi * x) * cos(0.5 * pi * y)
 # using piecewise linear basis functions.
 
-# 1000 2-dimensional sample points 
-aPnts = np.empty([1000, 2])  
+# 1000 2-dimensional sample points
+aPnts = np.empty([1000, 2])
 for iI in range(1000):
     for iJ in range(2):
         aPnts[iI][iJ] = uniform(-1.0, 1.0)
@@ -115,7 +115,7 @@ iDim = 2
 iOut = 1
 iDepth = 1
 fTol = 1.E-5
-which_basis = 1 
+which_basis = 1
 refinement_level = 5
 
 # level of grid before refinement
@@ -153,14 +153,11 @@ for iK in range(refinement_level):
 f2=open("Adaptive_sparse_grid.txt", 'a')
 np.savetxt(f2, aPoints, fmt='% 2.16f')
 f2.close()
- 
+
 grid2 = TasmanianSG.TasmanianSparseGrid()
 grid2.makeLocalPolynomialGrid(iDim, iOut, refinement_level+iDepth, which_basis, "localp")
 a = grid2.getNumPoints()
- 
+
 print("\n-------------------------------------------------------------------------------------------------")
 print( "   a fix sparse grid of level ", refinement_level+iDepth, " would consist of " ,a, " points")
-print("\n-------------------------------------------------------------------------------------------------\n")    
-
-
-    
+print("\n-------------------------------------------------------------------------------------------------\n")
