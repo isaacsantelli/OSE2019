@@ -90,9 +90,6 @@ def sparse_grid_adapt(n_agents, iDepth):
             aVals[iI] = solver.initial(aPoints[iI], n_agents)[0]
         grid.loadNeededPoints(aVals)
 
-        aRes = grid.evaluateBatch(aPnts)
-        fError1 = max(np.fabs(aRes[:,0] - aTres))
-
 
     file.close()
 
