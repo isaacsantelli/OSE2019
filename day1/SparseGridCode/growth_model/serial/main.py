@@ -32,8 +32,10 @@ import numpy as np
 valnew=TasmanianSG.TasmanianSparseGrid()
 if (numstart==0):
     for z in zlist:
-        if (z == 0) valnew = .2*(interpol.sparse_grid_adapt(n_agents, iDepth, z))
-        else valnew += .2*(interpol.sparse_grid_adapt(n_agents, iDepth, z))
+        if (z == 0): 
+		valnew = .2*interpol.sparse_grid_adapt(n_agents, iDepth, z)
+        else:
+		valnew += .2*(interpol.sparse_grid_adapt(n_agents, iDepth, z))
     valnew.write("valnew_1." + str(numstart) + ".txt") #write file to disk for restart
 
 
@@ -47,9 +49,9 @@ valold=valnew
 for i in range(numstart, numits):
     valnew=TasmanianSG.TasmanianSparseGrid()
     for z in zlist:
-        if (z == 0)
+        if (z == 0):
             valnew = .2 * (interpol_iter.sparse_grid_iter_adapt(n_agents, iDepth, valold, z))
-        else
+        else:
             valnew += .2 * (interpol_iter.sparse_grid_iter_adapt(n_agents, iDepth, valold, z))
     valold=TasmanianSG.TasmanianSparseGrid()
     valold=valnew
