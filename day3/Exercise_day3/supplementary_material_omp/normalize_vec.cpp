@@ -50,7 +50,7 @@ void normalize_vector_omp(double *v, int n)
     std::cout << "OPM norm:" << norm << "\n";
 
     // normalize v
-    #pragma omp parallel
+    #pragma omp for
     for(int i=0; i<n; i++)
         v[i] /= norm;
 }
