@@ -28,6 +28,7 @@ void normalize_vector(double *v, int n){
     for(int i=0; i<n; i++)
         norm += v[i]*v[i];
     norm = sqrt(norm);
+    print("Standard Norm", norm)
 
     // normalize v
     for(int i=0; i<n; i++)
@@ -39,15 +40,20 @@ void normalize_vector_omp(double *v, int n)
     double norm = 0.;
 
     // compute the norm of v
-    #pragma omp parallel for reduction(+:sum)
-    for(int i=0; i<n; i++)
-        norm += v[i]*v[i];
+    #pragma omp parallel for reduction(+:norm)
+    {
+        for(int i=0; i<n; i++)
+            norm += v[i]*v[i];
+    }
     norm = sqrt(norm);
+    print("OMP Norm", norm)
 
     // normalize v
     #pragma omp parallel
+    {
     for(int i=0; i<n; i++)
         v[i] /= norm;
+    }
 }
 
 int main( void ){
