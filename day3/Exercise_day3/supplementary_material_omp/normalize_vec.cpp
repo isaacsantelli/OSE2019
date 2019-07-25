@@ -55,7 +55,7 @@ void normalize_vector_omp(double *v, int n)
     //{
     for(int i=0; i<n; i++)
         v[i] /= norm;
-        sum += v[i] * v[i]
+        sum += v[i] * v[i];
     //}
     std::cout << "OPM norm:" << sqrt(sum) << "\n";
 
