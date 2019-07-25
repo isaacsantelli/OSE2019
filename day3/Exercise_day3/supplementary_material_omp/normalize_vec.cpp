@@ -39,7 +39,7 @@ void normalize_vector_omp(double *v, int n)
     double norm = 0.;
 
     // compute the norm of v
-    #pragma omp parallel for reduction(+:sum)
+    #pragma omp parallel for reduction(+:norm)
     for(int i=0; i<n; i++)
         norm += v[i]*v[i];
     norm = sqrt(norm);
