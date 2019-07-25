@@ -51,10 +51,8 @@ void normalize_vector_omp(double *v, int n)
 
     // normalize v
     #pragma omp parallel
-    {
     for(int i=0; i<n; i++)
         v[i] /= norm;
-    }
 }
 
 void get_norm(double *v, int n)
