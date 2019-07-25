@@ -51,12 +51,12 @@ void normalize_vector_omp(double *v, int n)
 
     // normalize v
     //#pragma omp parallel
-    sum = 0
-    {
+    float sum = 0.0;
+    //{
     for(int i=0; i<n; i++)
         v[i] /= norm;
         sum += v[i] * v[i]
-    }
+    //}
     std::cout << "OPM norm:" << sqrt(sum) << "\n";
 
 }
