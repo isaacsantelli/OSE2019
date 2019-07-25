@@ -13,8 +13,8 @@ from parameters import *
 
 #======================================================================
 # Routine to plot sparse grid solutions
-def plot_routine(n_agents, grid, dim, num_points):
-    f=open("forplot.txt", 'w')
+def plot_routine(n_agents, grid, dim, num_points, name):
+    f=open("results{}".format(name), 'w')
     k_points=0.5*(k_bar + k_up)*np.ones((num_points, n_agents))
     
     k_dim=np.linspace(k_bar, k_up, num_points)

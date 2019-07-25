@@ -76,8 +76,10 @@ for i in range(5):
         kj = np.array([aPnts[j]])
         aRes[j,i] = valnew[i].evaluateBatch(kj) # Evaluate the interpolant at the cartesian grid
 
+for z in zlist:
+	post.plot_routine(2,valnew[z], 2, aPnts.shape[0], z)
 np.savetxt("FinalValues.txt", aRes)
-np.savetxr("EvalPoints", aPnts)
+np.savetxt("EvalPoints", aPnts)
 	
 
 
