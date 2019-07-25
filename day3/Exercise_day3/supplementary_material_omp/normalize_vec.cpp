@@ -29,8 +29,8 @@ void normalize_vector(double *v, int n){
         norm += v[i]*v[i];
     norm = sqrt(norm);
 
-    std::cout << "Standard norm:" << norm << "\n";  
-    
+    std::cout << "Standard norm:" << norm << "\n";
+
 	// normalize v
     for(int i=0; i<n; i++)
         v[i] /= norm;
@@ -47,7 +47,7 @@ void normalize_vector_omp(double *v, int n)
     	norm += v[i]*v[i];
     }
     norm = sqrt(norm);
-    std::cout << "OPM norm:" << norm << "\n"; 
+    std::cout << "OPM norm:" << norm << "\n";
 
     // normalize v
     #pragma omp parallel
@@ -73,6 +73,7 @@ int main( void ){
     int max_threads = omp_get_max_threads();
     initialize(v, N);
     double time_parallel = -omp_get_wtime();
+    normalize_vector_omp(v, N);
     normalize_vector_omp(v, N);
     time_parallel += omp_get_wtime();
 
