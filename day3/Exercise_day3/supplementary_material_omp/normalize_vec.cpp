@@ -55,8 +55,19 @@ void normalize_vector_omp(double *v, int n)
     for(int i=0; i<n; i++)
         v[i] /= norm;
     }
+}
 
-
+void get_norm(double *v, int n)
+{
+    double norm = 0.;
+    // compute the norm of v
+    #pragma omp parallel for reduction(+:norm)
+    for(int i=0; i<n; i++)
+    {
+        norm += v[i]*v[i];
+    }
+    norm = sqrt(norm);
+    std::cout << "OPM norm:" << norm << "\n";
 }
 
 int main( void ){
@@ -76,6 +87,7 @@ int main( void ){
     initialize(v, N);
     double time_parallel = -omp_get_wtime();
     normalize_vector_omp(v, N);
+    get_norm(v, N);
     //normalize_vector_omp(v, N);
     time_parallel += omp_get_wtime();
 
