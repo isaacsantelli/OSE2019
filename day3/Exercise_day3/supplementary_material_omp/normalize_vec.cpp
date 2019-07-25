@@ -29,6 +29,7 @@ void normalize_vector(double *v, int n){
         norm += v[i]*v[i];
     norm = sqrt(norm);
     print("Standard Norm", norm)
+    
 
     // normalize v
     for(int i=0; i<n; i++)
