@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
-
 #include <omp.h>
 
 // function to compute the 2-norm of a vector v of length n
@@ -25,6 +24,7 @@ void normalize_vector(double *v, int n){
     double norm = 0.;
 
     // compute the norm of v
+
     for(int i=0; i<n; i++)
         norm += v[i]*v[i];
     norm = sqrt(norm);
@@ -39,6 +39,7 @@ void normalize_vector_omp(double *v, int n)
     double norm = 0.;
 
     // compute the norm of v
+    #pragma omp parallel for reduction(+:sum)
     for(int i=0; i<n; i++)
         norm += v[i]*v[i];
     norm = sqrt(norm);
