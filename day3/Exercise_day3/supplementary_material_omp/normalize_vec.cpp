@@ -29,7 +29,6 @@ void normalize_vector(double *v, int n){
         norm += v[i]*v[i];
     norm = sqrt(norm);
 
-    std::cout << "Standard norm:" << norm << "\n";
 
 	// normalize v
     for(int i=0; i<n; i++)
@@ -68,7 +67,7 @@ void get_norm(double *v, int n)
 }
 
 int main( void ){
-    const int N = 40000000;
+    const int N = 400000000;
     double *v = (double*)malloc(N*sizeof(double));
     bool validated = false;
 
