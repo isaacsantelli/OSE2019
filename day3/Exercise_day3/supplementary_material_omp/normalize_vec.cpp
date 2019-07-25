@@ -47,7 +47,6 @@ void normalize_vector_omp(double *v, int n)
     	norm += v[i]*v[i];
     }
     norm = sqrt(norm);
-    std::cout << "OPM norm:" << norm << "\n";
 
     // normalize v
     #pragma omp for
@@ -85,8 +84,6 @@ int main( void ){
     initialize(v, N);
     double time_parallel = -omp_get_wtime();
     normalize_vector_omp(v, N);
-    get_norm(v, N);
-    //normalize_vector_omp(v, N);
     time_parallel += omp_get_wtime();
 
     // chck the answer
