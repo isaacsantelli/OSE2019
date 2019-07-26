@@ -5,8 +5,8 @@ using namespace std;
 
 int main(void){
     const int N = 100000000;
-    std::vector<double> a(N);
-    std::vector<double> b(N);
+    vector<double> a(N);
+    vector<double> b(N);
 
     int num_threads = omp_get_max_threads();
     cout << "dot of vectors with length " << N  << " with " << num_threads << " threads" << std::endl;
@@ -33,7 +33,7 @@ int main(void){
     cout << "dot product " << dot
               << (dot==expected ? " which matches the expected value "
                                 : " which does not match the expected value ")
-              << expected << std::endl;
+              << expected << endl;
     cout << "that took " << time << " seconds" << std::endl;
     return 0;
 }
