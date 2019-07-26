@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
-
 #include <omp.h>
+using namespace std;
 
 int main(void){
     const int N = 100000000;
@@ -9,7 +9,7 @@ int main(void){
     std::vector<double> b(N);
 
     int num_threads = omp_get_max_threads();
-    std::cout << "dot of vectors with length " << N  << " with " << num_threads << " threads" << std::endl;
+    cout << "dot of vectors with length " << N  << " with " << num_threads << " threads" << std::endl;
 
     // initialize the vectors
     #pragma omp for
@@ -30,10 +30,10 @@ int main(void){
 
     // use formula for sum of arithmetic sequence: sum(1:n) = (n+1)*n/2
     double expected = double(N+1)*double(N)/4.;
-    std::cout << "dot product " << dot
+    cout << "dot product " << dot
               << (dot==expected ? " which matches the expected value "
                                 : " which does not match the expected value ")
               << expected << std::endl;
-    std::cout << "that took " << time << " seconds" << std::endl;
+    cout << "that took " << time << " seconds" << std::endl;
     return 0;
 }

@@ -4,3 +4,6 @@ normalize: normalize_vec.cpp
 
 dot_prod: dot_prod.cpp
 	g++ dot_prod.cpp -fopenmp -o dot_prod.exec
+
+dot_test: dot_test.cpp
+	g++ dot_test.cpp -fopenmp -o dot_test.exec
