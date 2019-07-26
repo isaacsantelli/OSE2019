@@ -13,12 +13,10 @@ int main(void){
 
     // initialize the vectors
     #pragma omp for
-    {
         for(int i=0; i<N; i++) {
             a[i] = 1./2.;
             b[i] = double(i+1);
         }
-    }
 
     double time = -omp_get_wtime();
     double dot=0.;
