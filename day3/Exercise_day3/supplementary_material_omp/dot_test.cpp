@@ -7,13 +7,13 @@ int main(int argc, char const *argv[]) {
 
     int i, n, j, k;
     double time, dot, average;
-    vector<double> a(N);
-    vector<double> b(N);
     for (k=1; k < 9; k++)
     {
         omp_set_num_threads(k);
         for (n = 10,000; n <= 500,000,000; n*=2)
         {
+            vector<double> a(n);
+            vector<double> b(n);
             for (j = 0; j < 10; j++)
             {
                 #pragma omp for
