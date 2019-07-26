@@ -7,3 +7,6 @@ dot_prod: dot_prod.cpp
 
 dot_test: dot_test.cpp
 	g++ dot_test.cpp -fopenmp -o dot_test.exec
+
+pi_monte: pi_monte.cpp
+	g++ pi_monte.cpp -fopenmp -o pi_monte.exec

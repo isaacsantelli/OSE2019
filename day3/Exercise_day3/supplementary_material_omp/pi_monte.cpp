@@ -27,6 +27,8 @@ int main() {
     float x, y;
     double rv = 0.0;
     // auto start = high_resolution_clock::now();
+
+    #pragma omp parallel for reduction(+:rv)
     for (i = 0; i < iterations; i++)
     {
         x = static_cast <float> (rand()) / static_cast <float> (RAND_MAX/2) - 1;
