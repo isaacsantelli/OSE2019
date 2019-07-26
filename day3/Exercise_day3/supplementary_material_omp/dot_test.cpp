@@ -5,17 +5,17 @@ using namespace std;
 
 int main(int argc, char const *argv[]) {
 
-    int i, n, j;
+    int i, n, j, k;
     double time, dot, average;
     for (k=1; k < 9; k++)
     {
         omp_set_num_threads(k);
-        for (N = 10,000; N <= 500,000,000; n*=2)
+        for (n = 10,000; n <= 500,000,000; n*=2)
         {
             for (j = 0; j < 10; j++)
             {
                 #pragma omp for
-                    for(int i=0; i<N; i++) {
+                    for(int i=0; i<n; i++) {
                         a[i] = 1./2.;
                         b[i] = double(i+1);
                     }
@@ -24,7 +24,7 @@ int main(int argc, char const *argv[]) {
                 dot=0.;
 
                 #pragma omp parallel for reduction(+:dot)
-                for(int i=0; i<N; i++)
+                for(int i=0; i<n; i++)
                 {
                     dot += a[i] * b[i];
                 }
