@@ -7,6 +7,8 @@ int main(int argc, char const *argv[]) {
 
     int i, n, j, k;
     double time, dot, average;
+    vector<double> a(N);
+    vector<double> b(N);
     for (k=1; k < 9; k++)
     {
         omp_set_num_threads(k);
