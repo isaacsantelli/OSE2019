@@ -15,6 +15,7 @@ import pyipopt
 
 def iterate(k_init, n_agents, grid, z):
 
+    print("nonlinear_solver_iterate.py function call z:", z)
     # IPOPT PARAMETERS below "
     N=3*n_agents    # number of vars
     M=3*n_agents+1  # number of constraints

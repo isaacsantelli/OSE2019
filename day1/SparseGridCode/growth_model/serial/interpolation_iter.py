@@ -40,6 +40,7 @@ def sparse_grid_iter(n_agents, iDepth, valold, z):
 
     file=open("comparison1.txt", 'w')
     for iI in range(iNumP1):
+        print("interpolation_iter.py function call z:", z)
         aVals[iI]=solveriter.iterate(aPoints[iI], n_agents, valold, z)[0]
         v=aVals[iI]*np.ones((1,1))
         to_print=np.hstack((aPoints[iI].reshape(1,n_agents), v))
