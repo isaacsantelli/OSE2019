@@ -37,7 +37,7 @@ def sparse_grid_iter(n_agents, iDepth, valold, z):
     aPoints=grid.getPoints()
     iNumP1=aPoints.shape[0]
     aVals=np.empty([iNumP1, 1])
-
+    print("interpolation_iter.py function call 1 z:", z)
     file=open("comparison1.txt", 'w')
     for iI in range(iNumP1):
         print("interpolation_iter.py function call z:", z)
