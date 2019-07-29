@@ -59,12 +59,12 @@ for i in range(numstart, numits):
 	valnew4=TasmanianSG.TasmanianSparseGrid()
 	valnew = [valnew0, valnew1, valnew2, valnew3, valnew4]
 	for z in zlist:
-            print("main.py function call z:", z)
-    		valnew[z] = (interpol_iter.sparse_grid_iter_adapt(n_agents, iDepth, valold, z))
+        print("main.py function call z:", z)
+		valnew[z] = (interpol_iter.sparse_grid_iter_adapt(n_agents, iDepth, valold, z))
 	print("Valnew length:", len(valnew))
 	print("Valold length:", len(valold))
 	for z in zlist:
-        	valold[z] = valnew[z]
+    	valold[z] = valnew[z]
 
 aPnts = np.empty([10000, 2])
 for iI in range(aPnts.shape[0]):
